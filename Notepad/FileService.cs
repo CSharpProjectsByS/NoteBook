@@ -16,10 +16,11 @@ namespace Notepad
         public RichTextBox contentOfTextAreaRTB;
 
         private List<string> allLinesInList;
-        
+
         public FileService(RichTextBox richTextBox)
         {
             contentOfTextAreaRTB = richTextBox;
+            allLinesInList = new List<string>();
         }
 
         //open without checking
@@ -29,7 +30,8 @@ namespace Notepad
 
             if (File.Exists(locationOfFile))
             {
-                PutFileToContentTextArea();
+                PutFileToInitalList();
+                putListToContentArea();
             }
 
             return isDone;
@@ -37,32 +39,52 @@ namespace Notepad
 
         public void SaveToFile()
         {
-            SaveContentFromContetTextAreaToFile();
+            putContentFromRTBToList();
+            SaveFinalContentToFile();
         }
 
-        private void PutFileToContentTextArea()
+        private void PutFileToInitalList()
         {
+            allLinesInList = new List<string>();
             using (var fileStream = new FileStream(locationOfFile, FileMode.Open, FileAccess.Read))
             {
                 byte[] b = new byte[1024];
                 UTF8Encoding temp = new UTF8Encoding(true);
                 while (fileStream.Read(b, 0, b.Length) > 0)
                 {
-                    contentOfTextAreaRTB.AppendText(temp.GetString(b));
+                    allLinesInList.Add(temp.GetString(b));
                 }
             }
         }
 
-        private void SaveContentFromContetTextAreaToFile()
+        private void putListToContentArea()
+        {
+            foreach (string line in allLinesInList)
+            {
+                contentOfTextAreaRTB.AppendText(line);
+            }
+        }
+
+        private void SaveFinalContentToFile()
         {
             using (var fileStream = new FileStream(locationOfFile, FileMode.Create))
             {
-                for (int i = 0; i < contentOfTextAreaRTB.Lines.Count(); i++)
+                for (int i = 0; i < allLinesInList.Count; i++)
                 {
-                    byte[] line = new UTF8Encoding(true).GetBytes(contentOfTextAreaRTB.Lines[i] + "\n");
+                    byte[] line = new UTF8Encoding(true).GetBytes(allLinesInList[i]);
                     fileStream.Write(line, 0, line.Length);   
                 }
                   
+            }
+        }
+
+
+        private void putContentFromRTBToList()
+        {
+            allLinesInList = new List<string>();
+            for (int i = 0; i < contentOfTextAreaRTB.Lines.Count(); i++)
+            {
+                allLinesInList.Add(contentOfTextAreaRTB.Lines[i] + "\n");
             }
         }
     }
