@@ -39,17 +39,25 @@ namespace Notepad
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
+            ContentOfFileArea.Clear();
             OpenFile();    
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-   
+            if (fileService.locationOfFile == "")
+            {
+                SaveAsToFile();
+            }
+            else
+            {
+                fileService.SaveToFile();
+            }
         }
 
         private void SaveAsButton_Click(object sender, EventArgs e)
         {
-
+            SaveAsToFile();
         }
 
         private void ClearTextAreaButton_Click(object sender, EventArgs e)
@@ -63,10 +71,22 @@ namespace Notepad
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Otwieranie pliku";
 
-            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 fileService.locationOfFile = openFileDialog.FileName;
                 fileService.OpenFile();
+            }
+        }
+
+        private void SaveAsToFile()
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Zapisz plik jako: ";
+            
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                fileService.locationOfFile = saveFileDialog.FileName;
+                fileService.SaveToFile();
             }
         }
     }
