@@ -1,0 +1,9 @@
+D:\Programowanie\VisualProjects\Notepad\Notepad\bin\Debug\Notepad.exe.config
+D:\Programowanie\VisualProjects\Notepad\Notepad\bin\Debug\Notepad.exe
+D:\Programowanie\VisualProjects\Notepad\Notepad\bin\Debug\Notepad.pdb
+D:\Programowanie\VisualProjects\Notepad\Notepad\obj\Debug\Notepad.csprojResolveAssemblyReference.cache
+D:\Programowanie\VisualProjects\Notepad\Notepad\obj\Debug\Notepad.Form1.resources
+D:\Programowanie\VisualProjects\Notepad\Notepad\obj\Debug\Notepad.Properties.Resources.resources
+D:\Programowanie\VisualProjects\Notepad\Notepad\obj\Debug\Notepad.csproj.GenerateResource.Cache
+D:\Programowanie\VisualProjects\Notepad\Notepad\obj\Debug\Notepad.exe
+D:\Programowanie\VisualProjects\Notepad\Notepad\obj\Debug\Notepad.pdb
