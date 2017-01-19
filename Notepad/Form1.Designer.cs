@@ -8,7 +8,7 @@
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        // Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -34,7 +34,6 @@
             this.SOptionGroupBox = new System.Windows.Forms.GroupBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.ZipCheckBox = new System.Windows.Forms.CheckBox();
-            this.SaveButton = new System.Windows.Forms.Button();
             this.OpenButton = new System.Windows.Forms.Button();
             this.ContentOfFileArea = new System.Windows.Forms.RichTextBox();
             this.optionGroupBox.SuspendLayout();
@@ -46,7 +45,6 @@
             this.optionGroupBox.Controls.Add(this.SaveAsButton);
             this.optionGroupBox.Controls.Add(this.ClearTextAreaButton);
             this.optionGroupBox.Controls.Add(this.SOptionGroupBox);
-            this.optionGroupBox.Controls.Add(this.SaveButton);
             this.optionGroupBox.Controls.Add(this.OpenButton);
             this.optionGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.optionGroupBox.Location = new System.Drawing.Point(26, 12);
@@ -113,17 +111,6 @@
             this.ZipCheckBox.UseVisualStyleBackColor = true;
             this.ZipCheckBox.CheckedChanged += new System.EventHandler(this.ZipCheckBox_CheckedChanged);
             // 
-            // SaveButton
-            // 
-            this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.SaveButton.Location = new System.Drawing.Point(109, 32);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(88, 34);
-            this.SaveButton.TabIndex = 1;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
             // OpenButton
             // 
             this.OpenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -152,7 +139,7 @@
             this.Controls.Add(this.ContentOfFileArea);
             this.Controls.Add(this.optionGroupBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Notatnik";
             this.optionGroupBox.ResumeLayout(false);
             this.SOptionGroupBox.ResumeLayout(false);
             this.SOptionGroupBox.PerformLayout();
@@ -167,7 +154,6 @@
         private System.Windows.Forms.GroupBox SOptionGroupBox;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox ZipCheckBox;
-        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button OpenButton;
         private System.Windows.Forms.RichTextBox ContentOfFileArea;
         private System.Windows.Forms.Button SaveAsButton;

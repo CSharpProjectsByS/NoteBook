@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,49 +25,44 @@ namespace Notepad
         private void ZipCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (ZipCheckBox.Checked)
-                fileService.isCompressed = true;
+                fileService.isCompressChecked = true;
             else
-                fileService.isCompressed = false;
+                fileService.isCompressChecked = false;
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox2.Checked)
-                fileService.isCrypt = true;
+                fileService.isCryptChecked = true;
             else
-                fileService.isCrypt = false;   
+                fileService.isCryptChecked = false;   
         }
 
         private void OpenButton_Click(object sender, EventArgs e)
         {
             ContentOfFileArea.Clear();
-            OpenFile();    
+            chooseProperFileForRead();
+            fileService.openFile();    
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            if (fileService.locationOfFile == "")
-            {
-                SaveAsToFile();
-            }
-            else
-            {
-                fileService.SaveToFile();
-            }
+            
         }
 
         private void SaveAsButton_Click(object sender, EventArgs e)
         {
-            SaveAsToFile();
+            chooseProperPathForWrite();
+            fileService.saveToFile();
         }
 
         private void ClearTextAreaButton_Click(object sender, EventArgs e)
         {
-
+            ContentOfFileArea.Clear();
         }
 
 
-        private void OpenFile()
+        private void chooseProperFileForRead()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Otwieranie pliku";
@@ -74,19 +70,29 @@ namespace Notepad
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 fileService.locationOfFile = openFileDialog.FileName;
-                fileService.OpenFile();
+                fileService.choosenExtension = Path.GetExtension(openFileDialog.FileName);
+                Console.WriteLine("Location: " + fileService.locationOfFile);
+                Console.WriteLine("Wybrane rozszerzenie: " + fileService.choosenExtension);
+                
+            }
+            else
+            {
+                MessageBox.Show("Nie udało się utowrzyć pliku.");
             }
         }
 
-        private void SaveAsToFile()
+        private void chooseProperPathForWrite()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "Zapisz plik jako: ";
-            
+            string extension = fileService.getPreferExtension();
+            saveFileDialog.DefaultExt = extension;
+            saveFileDialog.Filter = "Pliki (*. "+ extension +") | *." + extension + " | All files(*.*) | *.*";
+
+
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 fileService.locationOfFile = saveFileDialog.FileName;
-                fileService.SaveToFile();
             }
         }
     }
